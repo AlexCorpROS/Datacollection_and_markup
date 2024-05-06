@@ -27,14 +27,15 @@ while True:
         book_info['Название'] = post.find('h3').find('a').get('title')
         book_info['Ссылка'] = url + post.find('a').get('href')
         # Из задания не понятно в каком формате хранить данные о цене.
-        book_info['Цена'] = {float(post.find("p", class_="price_color").text.strip().replace("Â\u00a3", "")):'\u00a3'}
+        # book_info['Цена'] = {float(post.find("p", class_="price_color").text.strip().replace("Â\u00a3", "")):'\u00a3'}
+        book_info['Цена'] = float(post.find("p", class_="price_color").text.strip().replace("Â\u00a3", ""))
         book_info['Доступно к покупке'] = post.find("p", class_="instock availability").text.strip()
 
         all_books.append(book_info)
     print(f"Обработана {params['page']} страница")
     params['page'] += 1
 
-with open('list_of_books.json', 'w') as f:
+with open('list_of_books2.json', 'w') as f:
     json.dump(all_books, f)
 
 pprint(all_books)

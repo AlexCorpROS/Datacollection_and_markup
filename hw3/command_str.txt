@@ -1,0 +1,57 @@
+C:\Users\Work>mongosh
+Current Mongosh Log ID: 6638c77f7106f421f146b798
+Connecting to:          mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+2.2.5
+Using MongoDB:          7.0.9
+Using Mongosh:          2.2.5
+
+For mongosh info see: https://docs.mongodb.com/mongodb-shell/
+
+------
+   The server generated these startup warnings when booting
+   2024-05-06T14:34:18.848+03:00: Access control is not enabled for the database. Read and write access to data and configuration is unrestricted
+------
+
+test> show dbs
+admin    40.00 KiB
+books   132.00 KiB
+config  108.00 KiB
+local    40.00 KiB
+test> use books
+switched to db books
+books> show collections
+site
+books> db.stats()
+{
+  db: 'books',
+  collections: Long('1'),
+  views: Long('0'),
+  objects: Long('1000'),
+  avgObjSize: 260.172,
+  dataSize: 260172,
+  storageSize: 110592,
+  indexes: Long('1'),
+  indexSize: 24576,
+  totalSize: 135168,
+  scaleFactor: Long('1'),
+  fsUsedSize: 481821593600,
+  fsTotalSize: 751264874496,
+  ok: 1
+}
+books> db.site.find({name:"Soumission"})
+
+books> db.site.find({'Название':'Soumission'})
+[
+  {
+    _id: ObjectId('6638c1c160a6316471eada3b'),
+    'Название': 'Soumission',
+    'Ссылка': 'https://books.toscrape.com/soumission_998/index.html',
+    'Цена': { '50.1': '£' },
+    'Доступно к покупке': 'In stock'
+  }
+]
+books> db.site.find({"Цена": {"$gt": 50.0}}
+...
+
+Не понятно по какой причине ,но запросы из командной строки выполняются очень долго. Попробуем поработать с MongoDB из пайтона.
+
+
