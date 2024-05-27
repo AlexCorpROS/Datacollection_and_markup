@@ -32,7 +32,7 @@ with open(loc_url, 'r', encoding='utf-8') as f:
 tree = html.fromstring(response)
 
 tree = html.fromstring(response)
-table_rows = tree.xpath("//table[@class='data']//tr")
+table_rows = tree.xpath("//table[@ class='data']//tr")
 
 '''
 По условию задачи нам необходимо обработаь случаи когда данные не соответствуют ожидаемому формату.
